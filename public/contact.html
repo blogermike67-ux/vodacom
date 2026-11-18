@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | VersusAI</title>
+<style>
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600;800&display=swap");
+:root{--ink:#15101f;--ink2:#201a30;--red:#ff4d5e;--blue:#3aa8ff;--gold:#ffd54a;--bone:#f6f1e7;--muted:#b9b2c9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:"Manrope",sans-serif;line-height:1.65;font-size:17px;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(16px,4vw,48px);position:relative;z-index:5}
+.logo{font-family:"Anton",sans-serif;font-size:26px;letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center;flex-wrap:wrap}
+.nav li a{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;transition:background .2s}
+.nav li a:hover{background:rgba(255,255,255,.12)}
+.nav li a.here{background:rgba(255,255,255,.14)}
+.nav li a.play{background:var(--gold);color:#1a1200;font-weight:800}
+.nav li a.play:hover{background:#ffe27d}
+.footer{margin-top:auto;padding:28px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,.1)}
+.footer a{text-decoration:none}.footer a:hover{color:var(--gold)}
+.page{width:100%;max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(16px,4vw,48px)}
+.page h1{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(2.6rem,8vw,5.5rem);line-height:1;margin:0 0 18px;letter-spacing:1px}
+.lead{font-size:clamp(1.1rem,2.2vw,1.35rem);max-width:60ch;color:var(--muted);margin:0 0 40px}
+.btn{display:inline-block;padding:16px 36px;border-radius:999px;background:var(--gold);color:#1a1200;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 30px rgba(255,213,74,.3)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,213,74,.45)}
+@media (max-width:640px){.nav{flex-direction:column}.nav ul{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+.cols{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,5vw,64px);align-items:start}
+.cards{display:grid;gap:14px}
+.card{background:var(--ink2);border-radius:18px;padding:20px 22px}
+.card h2{margin:0 0 4px;font-size:15px;font-weight:800;color:var(--gold)}
+.card p,.card a{margin:0;color:var(--bone);word-break:break-word}
+form{background:var(--ink2);border-radius:22px;padding:clamp(20px,4vw,36px);display:grid;gap:18px}
+label{display:grid;gap:8px;font-weight:800;font-size:15px}
+input,select,textarea{width:100%;padding:14px 16px;border-radius:12px;border:2px solid rgba(255,255,255,.14);background:var(--ink);color:var(--bone);font-family:inherit;font-size:16px;transition:border-color .2s,box-shadow .2s}
+textarea{min-height:150px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#7d7691}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(255,213,74,.2)}
+form .btn{justify-self:start}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="cover.html">Versus<span>AI</span></a>
+  <nav aria-label="Main"><ul>
+    <li><a href="about.html" >About</a></li>
+    <li><a href="info.html" >How it works</a></li>
+    <li><a href="contact.html" class="here">Contact</a></li>
+    <li><a class="play" href="game.html">Play</a></li>
+  </ul></nav>
+</header>
+<main class="page">
+  <h1>Say hello.</h1>
+  <p class="lead">Found a bug, have a matchup idea, or want to work together? Send a message.</p>
+  <div class="cols">
+    <div class="cards">
+      <div class="card"><h2>Email</h2><a href="mailto:you@example.com">you@example.com</a></div>
+      <div class="card"><h2>Reply time</h2><p>Usually within two days.</p></div>
+      <div class="card"><h2>Ideas welcome</h2><p>Tell us the matchup you want to see judged.</p></div>
+    </div>
+
+    <form action="/contact" method="post">
+      <label>Your name
+        <input type="text" name="name" placeholder="Your name" required>
+      </label>
+      <label>Your email
+        <input type="email" name="email" placeholder="you@example.com" required>
+      </label>
+      <label>What is this about?
+        <select name="topic">
+          <option>Bug report</option>
+          <option>Matchup idea</option>
+          <option>Work together</option>
+          <option>Something else</option>
+        </select>
+      </label>
+      <label>Message
+        <textarea name="message" placeholder="Write your message" required></textarea>
+      </label>
+      <button class="btn" type="submit">Send message</button>
+    </form>
+  </div>
+</main>
+<footer class="footer">
+  <span>© VersusAI. Two things enter, one wins.</span>
+  <span><a href="cover.html">Home</a> &nbsp; <a href="about.html">About</a> &nbsp; <a href="info.html">How it works</a> &nbsp; <a href="conta.html">Contact</a></span>
+</footer>
+</body></html>

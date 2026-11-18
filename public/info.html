@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How it works | VersusAI</title>
+<style>
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600;800&display=swap");
+:root{--ink:#15101f;--ink2:#201a30;--red:#ff4d5e;--blue:#3aa8ff;--gold:#ffd54a;--bone:#f6f1e7;--muted:#b9b2c9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:"Manrope",sans-serif;line-height:1.65;font-size:17px;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(16px,4vw,48px);position:relative;z-index:5}
+.logo{font-family:"Anton",sans-serif;font-size:26px;letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center;flex-wrap:wrap}
+.nav li a{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;transition:background .2s}
+.nav li a:hover{background:rgba(255,255,255,.12)}
+.nav li a.here{background:rgba(255,255,255,.14)}
+.nav li a.play{background:var(--gold);color:#1a1200;font-weight:800}
+.nav li a.play:hover{background:#ffe27d}
+.footer{margin-top:auto;padding:28px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,.1)}
+.footer a{text-decoration:none}.footer a:hover{color:var(--gold)}
+.page{width:100%;max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(16px,4vw,48px)}
+.page h1{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(2.6rem,8vw,5.5rem);line-height:1;margin:0 0 18px;letter-spacing:1px}
+.lead{font-size:clamp(1.1rem,2.2vw,1.35rem);max-width:60ch;color:var(--muted);margin:0 0 40px}
+.btn{display:inline-block;padding:16px 36px;border-radius:999px;background:var(--gold);color:#1a1200;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 30px rgba(255,213,74,.3)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,213,74,.45)}
+@media (max-width:640px){.nav{flex-direction:column}.nav ul{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+.steps-list{list-style:none;margin:0 0 56px;padding:0;display:grid;gap:16px;counter-reset:s}
+.steps-list li{counter-increment:s;display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;background:var(--ink2);border-radius:18px;padding:22px}
+.steps-list li::before{content:counter(s);width:56px;height:56px;border-radius:50%;background:var(--gold);color:#1a1200;font-family:"Anton",sans-serif;font-size:28px;display:grid;place-items:center}
+.steps-list h2{margin:0 0 4px;font-size:20px;font-weight:800}
+.steps-list p{margin:0;color:var(--muted)}
+.faq h2,.rules h2{font-family:"Anton",sans-serif;font-weight:400;font-size:36px;margin:0 0 16px}
+details{background:var(--ink2);border-radius:14px;margin-bottom:10px;overflow:hidden}
+summary{cursor:pointer;padding:18px 22px;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold);font-size:24px;line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{margin:0;padding:0 22px 20px;color:var(--muted);max-width:65ch}
+.rules{margin-bottom:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.rules h2{grid-column:1/-1;margin-bottom:0}
+.rule{border:2px solid rgba(255,255,255,.14);border-radius:18px;padding:20px}
+.rule.win{border-color:var(--gold)}
+.rule.lose{border-color:var(--red)}
+.rule h3{margin:0 0 6px;font-family:"Anton",sans-serif;font-weight:400;font-size:26px;letter-spacing:1px}
+.rule.win h3{color:var(--gold)}.rule.lose h3{color:var(--red)}
+.rule p{margin:0;color:var(--muted)}
+
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="cover.html">Versus<span>AI</span></a>
+  <nav aria-label="Main"><ul>
+    <li><a href="about.html" >About</a></li>
+    <li><a href="info.html" class="here">How it works</a></li>
+    <li><a href="contact.html" >Contact</a></li>
+    <li><a class="play" href="index.html">Play</a></li>
+  </ul></nav>
+</header>
+<main class="page">
+  <h1>How it works</h1>
+  <p class="lead">Four steps, about ten seconds a round.</p>
+
+  <ol class="steps-list">
+    <li><div><h2>Type your two items</h2><p>Fill in the 1st item and the 2nd item boxes. Anything goes.</p></div></li>
+    <li><div><h2>Pick your side</h2><p>Press Pick 1 or Pick 2 to say who you think wins.</p></div></li>
+    <li><div><h2>Press AI Generate Compare</h2><p>The judge looks up a photo for each side, scores both, and writes a short case for each.</p></div></li>
+    <li><div><h2>See the verdict</h2><p>The higher percentage wins. If it's your pick, you win the round.</p></div></li>
+  </ol>
+
+  <section class="rules" aria-label="Results">
+    <h2>The outcome</h2>
+    <div class="rule win"><h3>You win</h3><p>Your pick scored higher than the other side.</p></div>
+    <div class="rule lose"><h3>You lose</h3><p>The judge preferred the other side. Try again.</p></div>
+  </section>
+
+  <section class="faq" aria-label="Questions">
+    <h2>Questions</h2>
+    <details><summary>Is the AI always right?</summary><p>No. It gives an opinion based on what it knows, so treat the percentage as a fun verdict, not a fact.</p></details>
+    <details><summary>Do I need an account?</summary><p>No. Open the game and play.</p></details>
+    <details><summary>What can I compare?</summary><p>Any two things: foods, people, products, ideas. Keep it friendly.</p></details>
+    <details><summary>Why did my photo not load?</summary><p>Some words don't match any picture. Try a simpler or more common name.</p></details>
+  </section>
+
+  <p style="margin-top:40px"><a class="btn" href="game.html">Start a round</a></p>
+</main>
+<footer class="footer">
+  <span>© VersusAI. Two things enter, one wins.</span>
+  <span><a href="cover.html">Home</a> &nbsp; <a href="about.html">About</a> &nbsp; <a href="info.html">How it works</a> &nbsp; <a href="conta.html">Contact</a></span>
+</footer>
+</body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | VersusAI</title>
+<style>
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600;800&display=swap");
+:root{--ink:#15101f;--ink2:#201a30;--red:#ff4d5e;--blue:#3aa8ff;--gold:#ffd54a;--bone:#f6f1e7;--muted:#b9b2c9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:"Manrope",sans-serif;line-height:1.65;font-size:17px;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(16px,4vw,48px);position:relative;z-index:5}
+.logo{font-family:"Anton",sans-serif;font-size:26px;letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center;flex-wrap:wrap}
+.nav li a{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;transition:background .2s}
+.nav li a:hover{background:rgba(255,255,255,.12)}
+.nav li a.here{background:rgba(255,255,255,.14)}
+.nav li a.play{background:var(--gold);color:#1a1200;font-weight:800}
+.nav li a.play:hover{background:#ffe27d}
+.footer{margin-top:auto;padding:28px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,.1)}
+.footer a{text-decoration:none}.footer a:hover{color:var(--gold)}
+.page{width:100%;max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(16px,4vw,48px)}
+.page h1{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(2.6rem,8vw,5.5rem);line-height:1;margin:0 0 18px;letter-spacing:1px}
+.lead{font-size:clamp(1.1rem,2.2vw,1.35rem);max-width:60ch;color:var(--muted);margin:0 0 40px}
+.btn{display:inline-block;padding:16px 36px;border-radius:999px;background:var(--gold);color:#1a1200;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 30px rgba(255,213,74,.3)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,213,74,.45)}
+@media (max-width:640px){.nav{flex-direction:column}.nav ul{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+.cols{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,64px);align-items:start}
+.about-card{background:linear-gradient(135deg,var(--red),#8a1633);border-radius:22px;padding:30px}
+.about-card.b{background:linear-gradient(135deg,var(--blue),#0a2e55);margin-top:18px}
+.about-card h2{font-family:"Anton",sans-serif;font-weight:400;font-size:30px;margin:0 0 8px}
+.about-card p{margin:0}
+.copy h2{font-family:"Anton",sans-serif;font-weight:400;font-size:32px;margin:36px 0 8px;color:var(--gold)}
+.copy h2:first-child{margin-top:0}
+.copy p{margin:0 0 14px;max-width:62ch}
+.maker{margin-top:48px;padding:24px 28px;border-left:5px solid var(--gold);background:var(--ink2);border-radius:0 18px 18px 0}
+.maker p{margin:0}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="cover.html">Versus<span>AI</span></a>
+  <nav aria-label="Main"><ul>
+    <li><a href="about.html" class="here">About</a></li>
+    <li><a href="info.html" >How it works</a></li>
+    <li><a href="contact.html" >Contact</a></li>
+    <li><a class="play" href="index.html">Play</a></li>
+  </ul></nav>
+</header>
+<main class="page">
+  <h1>Settle any argument.</h1>
+  <p class="lead">VersusAI is a comparison game. You bring two things, an AI judge scores them, and the verdict is a percentage nobody can argue with. (They will anyway.)</p>
+  <div class="cols">
+    <div class="copy">
+      <h2>Why it exists</h2>
+      <p>Every group chat has the same fight: this or that. VersusAI turns the fight into a game where you commit to a side first and the AI reveals who actually wins.</p>
+      <h2>What makes it fun</h2>
+      <p>You pick before you know the score. The judge gives each side a percentage and a short case for and against. Then it tells you whether you called it right.</p>
+      <h2>What you can compare</h2>
+      <p>Anything with two sides: food, sports stars, phones, programming languages, cities, habits.</p>
+      <div class="maker">
+        <p><strong>Built by [Your Name]</strong>, a web developer who made this with HTML, CSS, JavaScript, and Node.js. [Add one line about yourself here.]</p>
+      </div>
+    </div>
+    <div>
+      <div class="about-card"><h2>Side one</h2><p>Gets a percentage and a short argument from the judge.</p></div>
+      <div class="about-card b"><h2>Side two</h2><p>Gets the same treatment, so the fight is fair.</p></div>
+    </div>
+  </div>
+  <p style="margin-top:48px"><a class="btn" href="game.html">Play a round</a></p>
+</main>
+<footer class="footer">
+  <span>© VersusAI. Two things enter, one wins.</span>
+  <span><a href="cover.html">Home</a> &nbsp; <a href="about.html">About</a> &nbsp; <a href="info.html">How it works</a> &nbsp; <a href="conta.html">Contact</a></span>
+</footer>
+</body></html>

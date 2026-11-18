@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VersusAI | Pick a side. Let the AI judge.</title>
+<style>
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600;800&display=swap");
+:root{--ink:#15101f;--ink2:#201a30;--red:#ff4d5e;--blue:#3aa8ff;--gold:#ffd54a;--bone:#f6f1e7;--muted:#b9b2c9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:"Manrope",sans-serif;line-height:1.65;font-size:17px;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(16px,4vw,48px);position:relative;z-index:5}
+.logo{font-family:"Anton",sans-serif;font-size:26px;letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center;flex-wrap:wrap}
+.nav li a{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;transition:background .2s}
+.nav li a:hover{background:rgba(255,255,255,.12)}
+.nav li a.here{background:rgba(255,255,255,.14)}
+.nav li a.play{background:var(--gold);color:#1a1200;font-weight:800}
+.nav li a.play:hover{background:#ffe27d}
+.footer{margin-top:auto;padding:28px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,.1)}
+.footer a{text-decoration:none}.footer a:hover{color:var(--gold)}
+.page{width:100%;max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(16px,4vw,48px)}
+.page h1{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(2.6rem,8vw,5.5rem);line-height:1;margin:0 0 18px;letter-spacing:1px}
+.lead{font-size:clamp(1.1rem,2.2vw,1.35rem);max-width:60ch;color:var(--muted);margin:0 0 40px}
+.btn{display:inline-block;padding:16px 36px;border-radius:999px;background:var(--gold);color:#1a1200;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 30px rgba(255,213,74,.3)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,213,74,.45)}
+@media (max-width:640px){.nav{flex-direction:column}.nav ul{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+body{overflow-x:hidden}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;background:var(--blue-bg,#0f4a80)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#1c7fd1,#0a2e55)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#ff4d5e 0%,#8a1633 100%);clip-path:polygon(0 0,58% 0,42% 100%,0 100%)}
+.hero .nav{background:transparent}
+.stage{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(16px,5vw,72px) 80px;gap:12px}
+.fighter{font-family:"Anton",sans-serif;line-height:.9;text-transform:uppercase}
+.fighter b{display:block;font-weight:400;font-size:clamp(3rem,11vw,9rem);text-shadow:0 8px 0 rgba(0,0,0,.25)}
+.fighter small{display:inline-block;margin-top:14px;padding:6px 16px;border-radius:999px;background:rgba(0,0,0,.35);font-family:"Manrope",sans-serif;font-weight:800;font-size:15px;letter-spacing:.5px}
+.fighter.r{text-align:right}
+.center{text-align:center;max-width:460px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.tag{font-size:clamp(1.05rem,2vw,1.3rem);font-weight:600;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.tag strong{font-weight:800}
+.seal{width:110px;height:110px;border-radius:50%;background:var(--gold);color:#1a1200;font-family:"Anton",sans-serif;font-size:50px;display:grid;place-items:center;box-shadow:0 0 0 8px rgba(255,213,74,.25),0 0 60px rgba(255,213,74,.6);animation:seal 3s ease-in-out infinite}
+@keyframes seal{50%{transform:scale(1.07) rotate(-4deg)}}
+.big-play{position:relative;padding:22px 64px;border-radius:999px;background:#fff;color:#14101f;font-family:"Anton",sans-serif;font-size:34px;letter-spacing:2px;text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.45);animation:ring 1.8s infinite;transition:transform .2s}
+.big-play:hover{transform:scale(1.07)}
+@keyframes ring{0%{box-shadow:0 14px 40px rgba(0,0,0,.45),0 0 0 0 rgba(255,255,255,.7)}100%{box-shadow:0 14px 40px rgba(0,0,0,.45),0 0 0 28px rgba(255,255,255,0)}}
+.free{font-size:14px;opacity:.85;margin:0}
+.marquee{position:relative;z-index:2;overflow:hidden;background:var(--gold);color:#1a1200;padding:14px 0;white-space:nowrap;font-family:"Anton",sans-serif;font-size:22px;letter-spacing:1px}
+.track{display:inline-flex;animation:run 38s linear infinite}
+.track span{padding:0 28px}
+@keyframes run{to{transform:translateX(-50%)}}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1080px;margin:0 auto;padding:64px clamp(16px,4vw,48px)}
+.steps div{background:var(--ink2);border-radius:18px;padding:26px}
+.steps h2{font-family:"Anton",sans-serif;font-weight:400;font-size:28px;margin:0 0 8px;color:var(--gold)}
+.steps p{margin:0;color:var(--muted)}
+.final{text-align:center;padding:0 16px 80px}
+.final h2{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(2rem,6vw,3.6rem);margin:0 0 24px}
+@media (max-width:820px){
+  .hero::after{clip-path:polygon(0 0,100% 0,100% 46%,0 54%)}
+  .stage{grid-template-columns:1fr;grid-template-rows:auto auto auto;text-align:center;gap:18px;padding-bottom:48px}
+  .fighter,.fighter.r{text-align:center}
+  .center{order:2;margin:0 auto}.fighter.r{order:3}
+}
+
+</style>
+</head>
+<body>
+<header class="nav" style="position:absolute;top:0;left:0;right:0;">
+  <a class="logo" href="cover.html">Versus<span>AI</span></a>
+  <nav aria-label="Main"><ul>
+    <li><a href="about.html" >About</a></li>
+    <li><a href="info.html" >How it works</a></li>
+    <li><a href="contact.html" >Contact</a></li>
+    <li><a class="play" href="index.html">Play</a></li>
+  </ul></nav>
+</header>
+<main style="position:relative">
+<section class="hero" aria-label="Start">
+  <!-- the nav above sits on top of the hero via negative margin -->
+  <div class="stage">
+    <div class="fighter"><b>Pizza</b><small>Example verdict: 72%</small></div>
+    <div class="center">
+      <p class="tag">Type any two things.<br><strong>The AI decides which one wins.</strong></p>
+      <div class="seal" aria-hidden="true">VS</div>
+      <a class="big-play" href="index.html">PLAY NOW</a>
+      <p class="free">No account. Takes 10 seconds.</p>
+    </div>
+    <div class="fighter r"><b>Sushi</b><small>Example verdict: 28%</small></div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Cats vs Dogs</span><span>iPhone vs Android</span><span>Messi vs Ronaldo</span><span>Coffee vs Tea</span><span>Mountains vs Beach</span><span>Python vs JavaScript</span><span>Night owl vs Early bird</span><span>Books vs Movies</span>
+      <span>Cats vs Dogs</span><span>iPhone vs Android</span><span>Messi vs Ronaldo</span><span>Coffee vs Tea</span><span>Mountains vs Beach</span><span>Python vs JavaScript</span><span>Night owl vs Early bird</span><span>Books vs Movies</span>
+    </div>
+  </div>
+</section>
+
+<section class="steps" aria-label="How to play">
+  <div><h2>1. Enter two</h2><p>Type anything: foods, players, phones, ideas.</p></div>
+  <div><h2>2. Pick your side</h2><p>Choose the one you believe in before the AI speaks.</p></div>
+  <div><h2>3. Get the verdict</h2><p>The AI scores both, argues each case, and you find out if you win.</p></div>
+</section>
+
+<section class="final">
+  <h2>Think you can beat the judge?</h2>
+  <a class="btn" href="index.html">Start playing</a>
+</section>
+</main>
+<footer class="footer">
+  <span>© VersusAI. Two things enter, one wins.</span>
+  <span><a href="cover.html">Home</a> &nbsp; <a href="about.html">About</a> &nbsp; <a href="info.html">How it works</a> &nbsp; <a href="conta.html">Contact</a></span>
+</footer>
+</body></html>

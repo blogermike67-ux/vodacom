@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Scrappa Image Search</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+    max-width: 700px;
+    margin: 25px auto;
+}
+
+input {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-width: 0;
+}
+
+button {
+    padding: 14px 22px;
+    background: #222;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#status {
+    text-align: center;
+    margin: 20px;
+}
+
+#results {
+    columns: 4 220px;
+    column-gap: 15px;
+}
+
+.photo {
+    break-inside: avoid;
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    display: block;
+    min-height: 100px;
+    object-fit: cover;
+}
+
+.photo p {
+    padding: 10px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.photo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media(max-width: 600px) {
+    .search {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Scrappa Image Search</h1>
+
+<div class="search">
+
+    <input
+        id="search"
+        placeholder="Search anything..."
+        value="modern luxury houses"
+    >
+
+    <button id="submit">Search</button>
+
+</div>
+
+<p id="status">Ready to search</p>
+
+<div id="results"></div>
+
+<script>
+
+const API_KEY = "eyJpdiI6Im94TGw4SDkxaFp1NkNnNHBwSmxnQmc9PSIsInZhbHVlIjoiQm1TT3cyUU5Md1d6STkwYnorUG54dU96VERiVUQwRE1LTUI2d0pBbTM0NE5NbmdOTlUyWVF2TS93V2t2VDhyWGdBY2xyb1ZIVGdUMjhKaWFqd3k5bXc9PSIsIm1hYyI6ImQzNzkyNDY3NDI3NThhMWU3N2MyY2RiZjllMzY3Yzg1YzZhMTZjN2QxYjM4NTM2MDBkNWQzYzE3M2VjZmRlNzUiLCJ0YWciOiIifQ==";
+
+const search = document.getElementById("search");
+const submit = document.getElementById("submit");
+const results = document.getElementById("results");
+const status = document.getElementById("status");
+
+
+async function getImages() {
+
+    const query = search.value.trim();
+
+    if (!query) {
+        status.textContent = "Enter a search term";
+        return;
+    }
+
+    results.innerHTML = "";
+
+    submit.disabled = true;
+
+    status.textContent = "Searching Google Images...";
+
+    try {
+
+        const url = `https://scrappa.co/api/images?q=${encodeURIComponent(query)}&limit=30`;
+
+        const response = await fetch(url, {
+
+            method: "GET",
+
+            headers: {
+                "X-API-KEY": API_KEY,
+                "Accept": "application/json"
+            }
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.message || data.error || `HTTP Error: ${response.status}`
+            );
+        }
+
+        const images = Array.isArray(data)
+            ? data
+            : data.results || [];
+
+        status.textContent = `${images.length} images found`;
+
+        if (images.length === 0) {
+            status.textContent = "No images found";
+            return;
+        }
+
+        images.forEach(image => {
+
+            const div = document.createElement("div");
+
+            div.className = "photo";
+
+            const a = document.createElement("a");
+
+            a.href = image.link || "#";
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+
+            const img = document.createElement("img");
+
+            img.src = image.thumbnail || image.original;
+            img.alt = image.title || query;
+            img.loading = "lazy";
+
+            img.onerror = () => {
+                img.style.display = "none";
+            };
+
+            const p = document.createElement("p");
+
+            p.textContent = image.title || "Image";
+
+            a.appendChild(img);
+
+            div.appendChild(a);
+            div.appendChild(p);
+
+            results.appendChild(div);
+
+        });
+
+    } catch (error) {
+
+        status.textContent = "Error: " + error.message;
+
+        console.error(error);
+
+    } finally {
+
+        submit.disabled = false;
+
+    }
+
+}
+
+
+submit.addEventListener("click", getImages);
+
+search.addEventListener("keydown", e => {
+
+    if (e.key === "Enter") {
+        getImages();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
